@@ -1,6 +1,6 @@
 # Here we get the dictionaries for our game using puppeteer.
 
-Due to the fact, that I couldn't find any api to get russian nouns for the app, I developed the way, to get them from such online generators, that have their one db full of words.
+Due to the fact, that I couldn't find any api to get russian nouns for the app, I developed the way, to parse them directly from such online generators, that have their one db full of words.
 
 ### Setup and Gathering dictionaries.
 
