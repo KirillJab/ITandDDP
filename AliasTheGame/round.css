@@ -1,0 +1,122 @@
+.header {
+  position: relative;
+  width: 100%;
+  height: 130px;
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header span {
+  font-size: 48px;
+}
+
+#turn-timer {
+  font-size: 64px;
+  background: linear-gradient(180deg, #ffad32 0%, rgba(0, 0, 0, 0.27) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  -webkit-text-stroke: 2px var(--dark-blue);
+}
+
+.round-section {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 40px 0 30px 0;
+}
+
+.round-section .earned-points-display {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.round-section .earned-points-display div {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: var(--dark-blue);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 50px;
+}
+
+.cards-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0%;
+  left: 55%;
+}
+
+.cards-container .card,
+.cards-container .background-card {
+  position: absolute;
+  height: 400px;
+  width: 290px;
+  background: #fff7da;
+  transform: translate(-50%, 25%);
+
+  mix-blend-mode: normal;
+  border: 1px solid var(--dark-blue);
+  box-sizing: border-box;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cards-container .card span {
+  width: 100%;
+  font-size: 40px;
+  text-align: center;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+  color: var(--dark-blue);
+}
+
+.cards-container .background-card {
+  background: #ffdd63;
+}
+
+.cards-container .background-card.first-card {
+  transform: translate(-50%, 25%) rotate(-4.25deg);
+}
+
+.cards-container .background-card.second-card {
+  transform: translate(-50%, 25%) rotate(4.25deg);
+}
+
+.cards-container .cards-top.triangle {
+  position: absolute;
+  top: 10%;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 30px 20px 30px;
+  border-color: transparent transparent #2def1c transparent;
+  transform: translateX(-50%);
+}
+
+.cards-container .cards-bottom.triangle {
+  position: absolute;
+  top: 90%;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 20px 30px 0 30px;
+  border-color: #f54343 transparent transparent transparent;
+  transform: translateX(-50%);
+}

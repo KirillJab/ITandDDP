@@ -1,0 +1,65 @@
+.teams-points-section {
+  width: 100%;
+}
+
+.teams-points-section .team-turn div span {
+  font-size: 36px;
+}
+
+.teams-points-section #team-name-turn {
+  margin-left: 30px;
+}
+
+.teams-points-section .team-turn .underline {
+  width: 100%;
+  border-bottom: 1px solid #023047;
+}
+
+.teams-points-section .points-screen {
+  margin-top: 15px;
+}
+
+.teams-points-section .points-screen .points-screen-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#points-from-turn {
+  margin-right: 30px;
+  font-size: 36px;
+}
+
+.teams-points-section li > div {
+  position: relative;
+  width: 100%;
+  justify-content: start;
+  align-items: center;
+}
+.teams-points-section .row span {
+  position: absolute;
+  right: 0px;
+  display: inline-block;
+  font-size: 32px;
+}
+
+.teams-points-section ul {
+  height: 350px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.teams-points-section .team-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-top: 3px;
+  background-color: aqua;
+}
+
+.teams-points-section .team-name {
+  margin-left: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -34,6 +34,7 @@ button {
   font-style: normal;
   font-weight: 400;
   color: #ffffff;
+  border: none;
 }
 
 .button-naked {
@@ -49,6 +50,8 @@ main {
 .container {
   height: 100%;
   width: 100%;
+  padding: 50px;
+  box-sizing: border-box;
 
   display: flex;
   flex-direction: column;
@@ -86,4 +89,8 @@ ul {
 .flipped {
   display: block;
   transform: rotate(180deg);
+}
+
+.game-menu > section {
+  margin-top: 20px;
 }

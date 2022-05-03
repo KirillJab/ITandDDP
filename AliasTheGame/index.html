@@ -9,6 +9,16 @@
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="game-menu.css" />
     <link rel="stylesheet" href="game-settings.css" />
+    <link rel="stylesheet" href="vocabulary.css" />
+    <link rel="stylesheet" href="settings.css" />
+    <link rel="stylesheet" href="last-word.css" />
+    <link rel="stylesheet" href="teams.css" />
+    <link rel="stylesheet" href="points.css" />
+    <link rel="stylesheet" href="teams-points.css" />
+    <link rel="stylesheet" href="checkbox.css" />
+    <link rel="stylesheet" href="round.css" />
+    <link rel="stylesheet" href="triangle.css" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500&family=Oswald:wght@300;400&display=swap"
@@ -20,7 +30,8 @@
 <body>
     <main>
         <div class="container">
-            <div class="game-menu">
+            <!-- <div class="game-menu">
+                <div class="menu-header-background"></div>
                 <div class="menu-header">
                     <span class="game-name">Alias</span>
                 </div>
@@ -29,112 +40,241 @@
                     <button class="menu-button">НОВАЯ ИГРА</button>
                     <button class="menu-button">ПРАВИЛА</button>
                 </section>
-            </div>
-            <div class="game-menu game-settings-menu">
+            </div> -->
+
+
+
+            <div class="game-menu">
+                <div class="menu-header-background"></div>
                 <div class="menu-header">
                     <button class="go-back-button" id="go-back">
                         <span class="material-icon">arrow_back</span>
                     </button>
                     <span class="game-name">Alias</span>
                 </div>
-                <div class="game-settings">
-                    <div class="first-part">
-                        <section class="game-vocabulary">
-                            <button class="vocabularies-button" id="choose-vocabulary">Выбрать словарь</button>
-                            <span id="choosen-dictionary">Лёгкие слова</span>
-                        </section>
-                        <section class="additional-settings">
-                            <h2>Настройки</h2>
-                            <div class="bold-underline"></div>
-                            <ul>
-                                <li class="settings-row">
-                                    <div>
-                                        <aside>
-                                            <span class="material-icon">av_timer</span>
-                                        </aside>
-                                        <article>
-                                            <h3>Длина раунда</h3>
-                                            <p>за которое надо отгадать слова</p>
-                                        </article>
-                                        <div class="timer-display">
-                                            <span class="minutes-timer">1</span>
-                                            <span class="seconds-timer">30</span>
-                                            <span class="minutes-text">мин</span>
-                                        </div>
-                                    </div>
-                                    <div class="controls">
-                                        <button class="button" id="sub-time">-30 сек</button>
-                                        <button class="button" id="add-time">+30 сек</button>
-                                    </div>
-                                    <div class="thin-underline"></div>
-                                </li>
-                                <li class="settings-row">
-                                    <div>
-                                        <aside>
-                                            <span class="material-icon flipped">style_two_one</span>
-                                        </aside>
-                                        <article>
-                                            <h3>Количество слов</h3>
-                                            <p>необходимое для победы</p>
-                                        </article>
-                                        <div class="words-display">
-                                            <span class="minutes-timer" id="words-to-win-text">100</span>
-                                        </div>
-                                    </div>
-                                    <div class="controls">
-                                        <button class="button" id="sub-words">-10 слов</button>
-                                        <button class="button" id="add-words">-10 слов</button>
-                                    </div>
-                                </li>
-                            </ul>
-                        </section>
+
+
+                <section class="game-vocabulary">
+                    <div>
+                        <span class="vocabularies-description">Cловарь:</span>
+                        <button class="vocabularies-button" id="choose-vocabulary-next">
+                            <span class="material-icon">arrow_back</span></button>
+                        <span id="choosen-dictionary">Сложные слова</span>
+                        <button class="vocabularies-button" id="choose-vocabulary-next">
+                            <span class="material-icon">arrow_forward</span></button>
                     </div>
-                    <div class="second-part">
-                        <section class="last-word-section">
+                    <div class="underline"></div>
+                </section>
+                <section class="game-settings">
+                    <h2>Настройки</h2>
+                    <div class="bold-underline"></div>
+                    <ul>
+                        <li class="row">
                             <div>
                                 <aside>
-                                    <span class="material-icon">campaign_two_tone</span>
+                                    <span class="material-icon">av_timer</span>
                                 </aside>
                                 <article>
-                                    <h3>Последнее слово для всех</h3>
-                                    <p>слово, неотгаданное в лимит времени, могут угадывать все</p>
+                                    <h3>Длина раунда</h3>
+                                    <p>за которое надо отгадать слова</p>
                                 </article>
-                            </div>
-                            <div>
-                                <label class="checkbox">
-                                    <input type="checkbox">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </div>
-                        </section>
-                        <section class="teams-section">
-                            <h2>Команды</h2>
-                            <div class="bold-underline"></div>
-                            <ul>
-                                <li class="settings-row">
-                                    <div>
-                                        <div class="team-icon"></div>
-                                        <h3>Весёлые тюлени</h3>
-                                    </div>
-                                    <div class="thin-underline"></div>
-                                </li>
-                                <li class="settings-row">
-                                    <div>
-                                        <div class="team-icon"></div>
-                                        <h3>Мудрые черепахи</h3>
-                                    </div>
-                                </li>
-                                <div class="controls">
-                                    <button class="button-naked add-team-button" id="add-team">
-                                        Добавить команду
-                                    </button>
+                                <div class="timer-display">
+                                    <span class="minutes-timer">1</span>
+                                    <span class="seconds-timer">30</span>
+                                    <span class="minutes-text">мин</span>
                                 </div>
-                            </ul>
-                        </section>
+                            </div>
+                            <div class="controls">
+                                <button class="button" id="sub-time">-30 сек</button>
+                                <button class="button" id="add-time">+30 сек</button>
+                            </div>
+                            <div class="thin-underline"></div>
+                        </li>
+                        <li class="row">
+                            <div>
+                                <aside>
+                                    <span class="material-icon">aod</span>
+                                </aside>
+                                <article>
+                                    <h3>Количество слов</h3>
+                                    <p>необходимое для победы</p>
+                                </article>
+                                <div class="words-display">
+                                    <span class="minutes-timer" id="words-to-win-text">100</span>
+                                </div>
+                            </div>
+                            <div class="controls">
+                                <button class="button" id="sub-words">-10 слов</button>
+                                <button class="button" id="add-words">-10 слов</button>
+                            </div>
+                        </li>
+                    </ul>
+                    <button class="next-button" id="next-btn">Далее</button>
+                </section>
+
+
+                <!-- <div class="bold-underline"></div>
+                <section class="last-word-section">
+                    <aside>
+                        <span class="material-icon">campaign_two_tone</span>
+                    </aside>
+                    <article>
+                        <h3>Последнее слово для всех</h3>
+                        <p>слово, неотгаданное в лимит времени, могут угадывать все</p>
+                    </article>
+                    <label class="checkbox">
+                        <input type="checkbox">
+                        <span class="checkmark"></span>
+                    </label>
+                </section>
+
+
+                <section class="teams-section">
+                    <h2>Команды</h2>
+                    <div class="bold-underline"></div>
+                    <ul>
+                        <li class="row">
+                            <div>
+                                <div class="team-icon"></div>
+                                <h3 class="team-name">Весёлые тюлени</h3>
+                            </div>
+                            <div class="thin-underline"></div>
+                        </li>
+                        <li class="row">
+                            <div>
+                                <div class="team-icon"></div>
+                                <h3 class="team-name">Мудрые черепахи</h3>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="controls">
+                        <button class="button-naked add-team-button" id="add-team">
+                            Добавить команду
+                        </button>
                     </div>
+                </section>
+                <button class="goback-button" id="next-btn">Назад</button>
+                <button class="next-button" id="next-btn">Начать</button> -->
+
+                <!-- <section class="team-turn-section">
+                    <div class="team-turn">
+                        <div>
+                            <span>Ход:</span>
+                            <span id="team-name-turn">Веселыё тюлени</span>
+                        </div>
+                        <div class="underline"></div>
+                    </div>
+                    <div class="points-screen">
+                        <div class="points-screen-heading">
+                            <h2>Набранные очки:</h2>
+                            <span id="points-from-turn">23</span>
+                        </div>
+                        <div class="bold-underline"></div>
+                        <ul>
+                            <li class="row">
+                                <div>
+                                    <h3 class="team-name">Копия</h3>
+                                    <label class="checkbox">
+                                        <input type="checkbox">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                                <div class="thin-underline"></div>
+                            </li>
+                            <li class="row">
+                                <div>
+                                    <h3 class="team-name">Янтарь</h3>
+                                    <label class="checkbox">
+                                        <input type="checkbox">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                                <div class="thin-underline"></div>
+                            </li>
+                            <li class="row">
+                                <div>
+                                    <h3 class="team-name">Рыба</h3>
+                                    <label class="checkbox">
+                                        <input type="checkbox">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                                <div class="thin-underline"></div>
+                            </li>
+                            <li class="row">
+                                <div>
+                                    <h3 class="team-name">Трансляция</h3>
+                                    <label class="checkbox">
+                                        <input type="checkbox">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                                <div class="thin-underline"></div>
+                            </li>
+                            <li class="row">
+                                <div>
+                                    <h3 class="team-name">Сосна</h3>
+                                    <label class="checkbox">
+                                        <input type="checkbox">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <button class="next-button" id="next-btn">Завершить</button>
+                </section> -->
+
+                <!-- <section class="teams-points-section">
+                    <div class="points-screen">
+                        <h2>Команды:</h2>
+                        <div class="bold-underline"></div>
+                        <ul>
+                            <li class="row">
+                                <div>
+                                    <div class="team-icon"></div>
+                                    <h3 class="team-name">Весёлые тюлени</h3>
+                                    <span id="team1">23</span>
+                                </div>
+                                <div class="thin-underline"></div>
+                            </li>
+                            <li class="row">
+                                <div>
+                                    <div class="team-icon"></div>
+                                    <h3 class="team-name">Мудрые черепахи</h3>
+                                    <span id="team2">18</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <button class="next-button" id="next-btn">Следующий раунд</button>
+                </section> -->
+
+                <!-- <div class="header">
+                    <span class="team-name">Весёлые тюлени</span>
+                    <span id="turn-timer">23</span>
                 </div>
-                <button class="start-button" id="start-game">НАЧАТЬ</button>
+                <section class="round-section">
+                    <div class="earned-points-display">
+                        <div id="earned-points">+5</div>
+                        <div id="lost-points">-1</div>
+                    </div>
+                    <div class="cards-container">
+                        <div class="triangle cards-top"></div>
+                        <div class="background-card second-card"></div>
+                        <div class="background-card first-card"></div>
+                        <div class="card" draggable="true">
+                            <span>Автоцементовоз</span>
+                        </div>
+                        <div class="triangle cards-bottom"></div>
+                    </div>
+                </section> -->
+
+
             </div>
+
+
+        </div>
     </main>
 </body>
 
