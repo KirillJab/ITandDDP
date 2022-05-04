@@ -10,12 +10,34 @@
   overflow-x: hidden;
 }
 
+.teams-section .row input {
+  width: 70%;
+  margin-left: 35px;
+  background: transparent;
+  border: none;
+
+  font-family: "Oswald";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 35px;
+
+  color: #ffffff;
+}
+
 .teams-section .team-icon {
   width: 30px;
   height: 30px;
   border-radius: 50%;
   margin-top: 3px;
   background-color: aqua;
+}
+
+.teams-section .row button {
+  width: 20%;
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+  font-size: 35px;
 }
 
 .add-team-button::before {

@@ -5,6 +5,11 @@
   margin-top: 0px;
 }
 
+#words-to-win-text {
+  width: auto;
+  text-align: center;
+}
+
 .row .controls .button {
   width: 120px;
   height: 40px;

@@ -6,32 +6,32 @@
     <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="styles.css" />
-    <link rel="stylesheet" href="game-menu.css" />
-    <link rel="stylesheet" href="game-settings.css" />
-    <link rel="stylesheet" href="vocabulary.css" />
-    <link rel="stylesheet" href="settings.css" />
-    <link rel="stylesheet" href="last-word.css" />
-    <link rel="stylesheet" href="teams.css" />
-    <link rel="stylesheet" href="points.css" />
-    <link rel="stylesheet" href="teams-points.css" />
-    <link rel="stylesheet" href="checkbox.css" />
-    <link rel="stylesheet" href="round.css" />
-    <link rel="stylesheet" href="triangle.css" />
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./styles/game-menu.css" />
+    <link rel="stylesheet" href="./styles/game-settings.css" />
+    <link rel="stylesheet" href="./styles/vocabulary.css" />
+    <link rel="stylesheet" href="./styles/settings.css" />
+    <link rel="stylesheet" href="./styles/last-word.css" />
+    <link rel="stylesheet" href="./styles/teams.css" />
+    <link rel="stylesheet" href="./styles/points.css" />
+    <link rel="stylesheet" href="./styles/teams-points.css" />
+    <link rel="stylesheet" href="./styles/checkbox.css" />
+    <link rel="stylesheet" href="./styles/round.css" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500&family=Oswald:wght@300;400&display=swap"
         rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
     <title>Alias The Game</title>
 </head>
 
 <body>
     <main>
         <div class="container">
-            <!-- <div class="game-menu">
-                <div class="menu-header-background"></div>
+            <div class="game-menu" id="game-menu-container">
+                <!-- <div class="menu-header-background"></div>
                 <div class="menu-header">
                     <span class="game-name">Alias</span>
                 </div>
@@ -40,21 +40,21 @@
                     <button class="menu-button">НОВАЯ ИГРА</button>
                     <button class="menu-button">ПРАВИЛА</button>
                 </section>
-            </div> -->
+                </div> -->
 
 
 
-            <div class="game-menu">
-                <div class="menu-header-background"></div>
-                <div class="menu-header">
-                    <button class="go-back-button" id="go-back">
-                        <span class="material-icon">arrow_back</span>
-                    </button>
-                    <span class="game-name">Alias</span>
-                </div>
+                <!-- <div class="game-menu">
+                    <div class="menu-header-background"></div>
+                    <div class="menu-header">
+                        <button class="go-back-button" id="go-back-btn">
+                            <span class="material-icon">arrow_back</span>
+                        </button>
+                        <span class="game-name">Alias</span>
+                    </div> -->
 
 
-                <section class="game-vocabulary">
+                <!-- <section class="game-vocabulary">
                     <div>
                         <span class="vocabularies-description">Cловарь:</span>
                         <button class="vocabularies-button" id="choose-vocabulary-next">
@@ -110,120 +110,123 @@
                         </li>
                     </ul>
                     <button class="next-button" id="next-btn">Далее</button>
-                </section>
+                </section> -->
 
 
                 <!-- <div class="bold-underline"></div>
-                <section class="last-word-section">
-                    <aside>
-                        <span class="material-icon">campaign_two_tone</span>
-                    </aside>
-                    <article>
-                        <h3>Последнее слово для всех</h3>
-                        <p>слово, неотгаданное в лимит времени, могут угадывать все</p>
-                    </article>
-                    <label class="checkbox">
-                        <input type="checkbox">
-                        <span class="checkmark"></span>
-                    </label>
-                </section>
+                    <section class="last-word-section">
+                        <aside>
+                            <span class="material-icon">campaign_two_tone</span>
+                        </aside>
+                        <article>
+                            <h3>Последнее слово для всех</h3>
+                            <p>слово, неотгаданное в лимит времени, могут угадывать все</p>
+                        </article>
+                        <label class="checkbox">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                        </label>
+                    </section>
 
 
-                <section class="teams-section">
-                    <h2>Команды</h2>
-                    <div class="bold-underline"></div>
-                    <ul>
-                        <li class="row">
-                            <div>
-                                <div class="team-icon"></div>
-                                <h3 class="team-name">Весёлые тюлени</h3>
-                            </div>
-                            <div class="thin-underline"></div>
-                        </li>
-                        <li class="row">
-                            <div>
-                                <div class="team-icon"></div>
-                                <h3 class="team-name">Мудрые черепахи</h3>
-                            </div>
-                        </li>
-                    </ul>
-                    <div class="controls">
-                        <button class="button-naked add-team-button" id="add-team">
-                            Добавить команду
-                        </button>
-                    </div>
-                </section>
-                <button class="goback-button" id="next-btn">Назад</button>
-                <button class="next-button" id="next-btn">Начать</button> -->
-
-                <!-- <section class="team-turn-section">
-                    <div class="team-turn">
-                        <div>
-                            <span>Ход:</span>
-                            <span id="team-name-turn">Веселыё тюлени</span>
-                        </div>
-                        <div class="underline"></div>
-                    </div>
-                    <div class="points-screen">
-                        <div class="points-screen-heading">
-                            <h2>Набранные очки:</h2>
-                            <span id="points-from-turn">23</span>
-                        </div>
+                    <section class="teams-section">
+                        <h2>Команды</h2>
                         <div class="bold-underline"></div>
                         <ul>
                             <li class="row">
                                 <div>
-                                    <h3 class="team-name">Копия</h3>
-                                    <label class="checkbox">
-                                        <input type="checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
+                                    <div class="team-icon"></div>
+                                    <input type="text" placeholder="Название команды">
+                                    <button>
+                                        <span class="material-icon ">close</span>
+                                    </button>
                                 </div>
                                 <div class="thin-underline"></div>
                             </li>
                             <li class="row">
                                 <div>
-                                    <h3 class="team-name">Янтарь</h3>
-                                    <label class="checkbox">
-                                        <input type="checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </div>
-                                <div class="thin-underline"></div>
-                            </li>
-                            <li class="row">
-                                <div>
-                                    <h3 class="team-name">Рыба</h3>
-                                    <label class="checkbox">
-                                        <input type="checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </div>
-                                <div class="thin-underline"></div>
-                            </li>
-                            <li class="row">
-                                <div>
-                                    <h3 class="team-name">Трансляция</h3>
-                                    <label class="checkbox">
-                                        <input type="checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </div>
-                                <div class="thin-underline"></div>
-                            </li>
-                            <li class="row">
-                                <div>
-                                    <h3 class="team-name">Сосна</h3>
-                                    <label class="checkbox">
-                                        <input type="checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
+                                    <div class="team-icon"></div>
+                                    <h3 class="team-name">Мудрые черепахи</h3>
                                 </div>
                             </li>
                         </ul>
-                    </div>
-                    <button class="next-button" id="next-btn">Завершить</button>
-                </section> -->
+                        <div class="controls">
+                            <button class="button-naked add-team-button" id="add-team">
+                                Добавить команду
+                            </button>
+                        </div>
+                    </section>
+                    <button class="goback-button" id="next-btn">Назад</button>
+                    <button class="next-button" id="next-btn">Начать</button> -->
+
+                <!-- <section class="team-turn-section">
+                        <div class="team-turn">
+                            <div>
+                                <span>Ход:</span>
+                                <span id="team-name-turn">Веселыё тюлени</span>
+                            </div>
+                            <div class="underline"></div>
+                        </div>
+                        <div class="points-screen">
+                            <div class="points-screen-heading">
+                                <h2>Набранные очки:</h2>
+                                <span id="points-from-turn">23</span>
+                            </div>
+                            <div class="bold-underline"></div>
+                            <ul>
+                                <li class="row">
+                                    <div>
+                                        <h3 class="team-name">Копия</h3>
+                                        <label class="checkbox">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </div>
+                                    <div class="thin-underline"></div>
+                                </li>
+                                <li class="row">
+                                    <div>
+                                        <h3 class="team-name">Янтарь</h3>
+                                        <label class="checkbox">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </div>
+                                    <div class="thin-underline"></div>
+                                </li>
+                                <li class="row">
+                                    <div>
+                                        <h3 class="team-name">Рыба</h3>
+                                        <label class="checkbox">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </div>
+                                    <div class="thin-underline"></div>
+                                </li>
+                                <li class="row">
+                                    <div>
+                                        <h3 class="team-name">Трансляция</h3>
+                                        <label class="checkbox">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </div>
+                                    <div class="thin-underline"></div>
+                                </li>
+                                <li class="row">
+                                    <div>
+                                        <h3 class="team-name">Сосна</h3>
+                                        <label class="checkbox">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <button class="next-button" id="next-btn">Завершить</button>
+                    </section> -->
 
                 <!-- <section class="teams-points-section">
                     <div class="points-screen">
@@ -270,12 +273,10 @@
                     </div>
                 </section> -->
 
-
             </div>
-
-
         </div>
     </main>
+    <script type="module" src="index.js"></script>
 </body>
 
 </html>

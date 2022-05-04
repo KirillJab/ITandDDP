@@ -4,7 +4,9 @@
   --light-orange: #ffb703;
   --dark-orange: #fb8500;
 }
-
+a {
+  text-decoration: none;
+}
 html,
 body {
   margin: 0px;
@@ -83,9 +85,11 @@ p {
 ul {
   list-style-type: none;
 }
+
 .material-icon {
   font-family: "Material Icons";
 }
+
 .flipped {
   display: block;
   transform: rotate(180deg);
@@ -93,4 +97,8 @@ ul {
 
 .game-menu > section {
   margin-top: 20px;
+}
+
+.grabbing {
+  cursor: grabbing;
 }
