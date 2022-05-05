@@ -1,72 +1,77 @@
 import { Header } from "./header.js";
+import { getPoints } from "../helpers/points.helpers.js";
 
-export const Points = () => `
+export const Points = (
+  { swipedWords, swipedWordsLength, lastWordTeamId },
+  { teams, currentTeamId, isLastWordForAll }
+) => `
 ${Header()}
 <section class="team-turn-section">
-<div class="team-turn">
-    <div>
-        <span>Ход:</span>
-        <span id="team-name-turn">Веселыё тюлени</span>
-    </div>
-    <div class="underline"></div>
-</div>
 <div class="points-screen">
     <div class="points-screen-heading">
         <h2>Набранные очки:</h2>
-        <span id="points-from-turn">23</span>
+        <span id="points-from-turn">${getPoints(
+          swipedWords,
+          !isLastWordForAll || lastWordTeamId === currentTeamId
+        )}</span>
     </div>
     <div class="bold-underline"></div>
-    <ul>
-        <li class="row">
+    <ul id="points-list">
+    ${swipedWords
+      .map(
+        (word, index) =>
+          `<li class="row">
             <div>
-                <h3 class="team-name">Копия</h3>
+            ${
+              index === swipedWordsLength - 1 && isLastWordForAll
+                ? `<button class="group-button" id="choose-team-name"><span class="material-icon">group</span></button>`
+                : `
                 <label class="checkbox">
-                    <input type="checkbox">
+                    <input type="checkbox" id="${word.word}" 
+                    ${word.guessed ? "checked" : ""}>
                     <span class="checkmark"></span>
-                </label>
+                </label>`
+            }
+                <h3>${word.word}</h3>
             </div>
-            <div class="thin-underline"></div>
-        </li>
-        <li class="row">
-            <div>
-                <h3 class="team-name">Янтарь</h3>
-                <label class="checkbox">
-                    <input type="checkbox">
-                    <span class="checkmark"></span>
-                </label>
-            </div>
-            <div class="thin-underline"></div>
-        </li>
-        <li class="row">
-            <div>
-                <h3 class="team-name">Рыба</h3>
-                <label class="checkbox">
-                    <input type="checkbox">
-                    <span class="checkmark"></span>
-                </label>
-            </div>
-            <div class="thin-underline"></div>
-        </li>
-        <li class="row">
-            <div>
-                <h3 class="team-name">Трансляция</h3>
-                <label class="checkbox">
-                    <input type="checkbox">
-                    <span class="checkmark"></span>
-                </label>
-            </div>
-            <div class="thin-underline"></div>
-        </li>
-        <li class="row">
-            <div>
-                <h3 class="team-name">Сосна</h3>
-                <label class="checkbox">
-                    <input type="checkbox">
-                    <span class="checkmark"></span>
-                </label>
-            </div>
-        </li>
+            ${
+              index < swipedWordsLength - 1
+                ? `<div class="thin-underline"></div>`
+                : ""
+            }
+        </li>`
+      )
+      .join("")}
     </ul>
 </div>
+<div class="team-turn">
+    <div>
+        <span id="team-name-turn">${teams[currentTeamId].name}</span>
+    </div>
+    <div class="underline"></div>
+</div>
 <button class="next-button" id="next-btn">Завершить</button>
-</section>`;
+</section>
+${
+  isLastWordForAll
+    ? `
+    <div id="modal-container">
+      <div id="modal">
+        <h2>Какая команда отгадала последнее слово?</h2>
+        <div class="underline"></div>
+        ${teams
+          .map(
+            (team, index) => `
+          <button id=${"choose-" + index}>
+            <span>${team.name}</span>
+          </button>`
+          )
+          .join("")}
+          <button id="choose-noone">
+            <span>Никто</span>
+          </button>
+      </div>
+    </div>
+  `
+    : ""
+}`;
