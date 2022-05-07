@@ -4,7 +4,7 @@
 
 #### This app represents my implementation of one of my personal favourites when it comes to board games "Alias" or "Say Another Way". Main goal of this intellectual game is to get points by explaining words that are written on the cards.
 
-You can do so by dividing into teams and giving them names. Then you will have to choose the difficulty of the game and tweak some settings, which will define the way you'll play the game. Teams take turns on explaining words in given time period. The idea is to explain them using synonyms, opposites or clues so that your team mates guess as many words from the card as possible before the time runs out. The team moves forward on the board the same amount as words guessed.
+You can do so by dividing into teams and giving them names. Then you will have to choose the difficulty of the game and tweak some settings, which will define the way you'll play the game. Teams take turns on explaining words in given time period. The idea is to explain them using synonyms, opposites or clues so that your team mates guess as many words from the cards as possible before the time runs out. The team gets same amount of points as words guessed.
 
 # Mockup:
 
@@ -34,8 +34,8 @@ Swipe gesture word control, page with stats after each team finish their explana
 
 ##### 5) Visualisation of Progress
 
-Each team will see their progress on board map with start and finish.
+Each team will see their progress on the table after each every turn. And when you win all the other teams would know it!
 
 ##### 6) Haven't Finished the Game in One Go? No need to worry!
 
-We got you covered with the ability to continue the game any time you want!
+We got you covered with the ability to save and continue the game any time you want!
