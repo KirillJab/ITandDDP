@@ -17,7 +17,7 @@ let gameData;
 const resetGameData = () => {
   gameData = {
     dictionary: 0,
-    roundTime: 3,
+    roundTime: 60,
     wordsToWin: 50,
     isLastWordForAll: false,
     teams: [
@@ -76,34 +76,6 @@ const getNewWord = () => {
 };
 
 const swipeCard = (word, guessed) => {
-  roundData.swipedWords.push({
-    word,
-    guessed,
-  });
-  roundData.swipedWords.push({
-    word,
-    guessed,
-  });
-  roundData.swipedWords.push({
-    word,
-    guessed,
-  });
-  roundData.swipedWords.push({
-    word,
-    guessed,
-  });
-  roundData.swipedWords.push({
-    word,
-    guessed,
-  });
-  roundData.swipedWords.push({
-    word,
-    guessed,
-  });
-  roundData.swipedWords.push({
-    word,
-    guessed,
-  });
   roundData.swipedWords.push({
     word,
     guessed,
