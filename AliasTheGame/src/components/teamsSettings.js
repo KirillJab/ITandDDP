@@ -28,10 +28,14 @@ ${Header()}
         (team, index, array) => `
       <li class="row">
           <div>
-              <div class="team-icon"></div>
+              <div class="team-icon">
+                <input type="color" value="${
+                  team.color
+                }" id="edit-team-color-${index}">
+              </div>
               <input type="text" placeholder="Название команды" value="${
                 team.name
-              }" id="edit-team-name-${index}">
+              }" id="edit-team-name-${index}" maxlength="16">
               <button id="delete-team-${index}">
                   <span class="material-icon">close</span>
               </button>

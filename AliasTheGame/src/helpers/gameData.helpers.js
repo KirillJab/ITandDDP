@@ -5,7 +5,7 @@ export const getNewTime = (roundTime, delta) => {
 };
 
 export const getNewWordsAmount = (wordsToWin, delta) => {
-  return wordsToWin + delta >= 10 && wordsToWin + delta <= 1000
+  return wordsToWin + delta >= 10 && wordsToWin + delta <= 100
     ? wordsToWin + delta
     : wordsToWin;
 };

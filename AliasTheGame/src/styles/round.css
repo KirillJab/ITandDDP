@@ -93,6 +93,9 @@
   cursor: grab;
   user-select: none;
 }
+.cards-container #game-card.grabbing {
+  cursor: grabbing;
+}
 
 .cards-container .background-card {
   background: #ffdd63;

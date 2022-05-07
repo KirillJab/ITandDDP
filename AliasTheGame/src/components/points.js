@@ -2,7 +2,7 @@ import { Header } from "./header.js";
 import { getPoints } from "../helpers/points.helpers.js";
 
 export const Points = (
-  { swipedWords, swipedWordsLength, lastWordTeamId },
+  { swipedWords, lastWordTeamId },
   { teams, currentTeamId, isLastWordForAll }
 ) => `
 ${Header()}
@@ -12,18 +12,19 @@ ${Header()}
         <h2>Набранные очки:</h2>
         <span id="points-from-turn">${getPoints(
           swipedWords,
-          !isLastWordForAll || lastWordTeamId === currentTeamId
+          isLastWordForAll,
+          lastWordTeamId === currentTeamId
         )}</span>
     </div>
     <div class="bold-underline"></div>
     <ul id="points-list">
     ${swipedWords
       .map(
-        (word, index) =>
+        (word, index, array) =>
           `<li class="row">
             <div>
             ${
-              index === swipedWordsLength - 1 && isLastWordForAll
+              index === array.length - 1 && isLastWordForAll
                 ? `<button class="group-button" id="choose-team-name"><span class="material-icon">group</span></button>`
                 : `
                 <label class="checkbox">
@@ -35,7 +36,7 @@ ${Header()}
                 <h3>${word.word}</h3>
             </div>
             ${
-              index < swipedWordsLength - 1
+              index < array.length - 2 + +isLastWordForAll
                 ? `<div class="thin-underline"></div>`
                 : ""
             }
