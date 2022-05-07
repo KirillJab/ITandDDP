@@ -20,6 +20,7 @@ export const CardSlider = (
 
   let timeLeft = roundTime;
   let timeIsOut = false;
+  let canDealCards = true;
 
   const upCounter = document.getElementById("earned-points");
   const downCounter = document.getElementById("lost-points");
@@ -38,11 +39,12 @@ export const CardSlider = (
   timerElement.textContent = timeLeft;
 
   const timer = setInterval(() => {
-    timeLeft -= 10;
+    timeLeft--;
     if (timeLeft === 0) {
       clearInterval(timer);
       if (!isLastWordForAll) {
-        FinishRound();
+        canDealCards = false;
+        setTimeout(FinishRound, 500);
       } else {
         timeIsOut = true;
       }
@@ -58,7 +60,10 @@ export const CardSlider = (
 
   const hideCard = () => {
     card.style.display = "none";
-    setTimeout(() => (card.style.display = "flex"), 300);
+    setTimeout(
+      () => (card.style.display = canDealCards ? "flex" : "none"),
+      300
+    );
   };
 
   const updateCounters = (guessed) => {
@@ -95,14 +100,15 @@ export const CardSlider = (
     const movedBy = currentTranslate - prevTranslate;
 
     if (movedBy < -pixelsToCount || movedBy > pixelsToCount) {
-      const guessed = movedBy < -pixelsToCount;
-      wordsPlayed++;
+      const guessed = movedBy < -pixelsToCount || timeIsOut;
 
-      swipeCard(guessed);
+      swipeCard(cardWord.textContent, guessed);
 
       if (timeIsOut) {
+        // getNewWord();
         FinishRound();
       } else {
+        wordsPlayed++;
         updateCounters(guessed);
         hideCard();
         shuffleCards();

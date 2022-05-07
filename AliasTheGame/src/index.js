@@ -12,24 +12,31 @@ import {
   getNextCurrentTeamId,
 } from "./helpers/gameData.helpers.js";
 
-const gameData = {
-  dictionary: 0,
-  roundTime: 60,
-  wordsToWin: 50,
-  isLastWordForAll: false,
-  teams: [
-    {
-      name: "Весёлые тюлени",
-      points: 0,
-      color: "",
-    },
-    {
-      name: "Мудрые черепахи",
-      points: 0,
-      color: "",
-    },
-  ],
-  currentTeamId: 0,
+let gameData;
+
+const resetGameData = () => {
+  gameData = {
+    dictionary: 0,
+    roundTime: 3,
+    wordsToWin: 50,
+    isLastWordForAll: false,
+    teams: [
+      {
+        name: "Весёлые тюлени",
+        points: 0,
+        color: "#FFF38B",
+      },
+      {
+        name: "Мудрые черепахи",
+        points: 0,
+        color: "#38F5F5",
+      },
+    ],
+    currentTeamId: 0,
+    maxPoints: 0,
+    isOvertime: false,
+    isFinish: false,
+  };
 };
 
 let roundData = {
@@ -68,28 +75,67 @@ const getNewWord = () => {
   return wordsForRound[roundData.swipedWordsLength++];
 };
 
+const swipeCard = (word, guessed) => {
+  roundData.swipedWords.push({
+    word,
+    guessed,
+  });
+  roundData.swipedWords.push({
+    word,
+    guessed,
+  });
+  roundData.swipedWords.push({
+    word,
+    guessed,
+  });
+  roundData.swipedWords.push({
+    word,
+    guessed,
+  });
+  roundData.swipedWords.push({
+    word,
+    guessed,
+  });
+  roundData.swipedWords.push({
+    word,
+    guessed,
+  });
+  roundData.swipedWords.push({
+    word,
+    guessed,
+  });
+  roundData.swipedWords.push({
+    word,
+    guessed,
+  });
+};
+
 const RenderMainMenu = () => {
   mainContainer.innerHTML = MainMenu();
-  addOnClick("new-game-btn", RenderNewGame);
+  addOnClick("new-game-btn", () => {
+    resetGameData();
+    RenderNewGame();
+  });
 };
 
 const RenderNewGame = () => {
   mainContainer.innerHTML = NewGameSettings(gameData);
+
   addOnClick("go-back-btn", RenderMainMenu);
   addOnClick("add-time", () => {
-    getNewTime(30, gameData.roundTime);
+    gameData.roundTime = getNewTime(gameData.roundTime, 30);
     RenderNewGame();
   });
   addOnClick("sub-time", () => {
-    getNewTime(-30, gameData.roundTime);
+    gameData.roundTime = getNewTime(gameData.roundTime, -30);
     RenderNewGame();
   });
   addOnClick("add-words", () => {
-    getNewWordsAmount(10, gameData.wordsToWin);
+    gameData.wordsToWin = getNewWordsAmount(gameData.wordsToWin, 10);
     RenderNewGame();
   });
   addOnClick("sub-words", () => {
-    getNewWordsAmount(-10, gameData.wordsToWin);
+    gameData.wordsToWin = getNewWordsAmount(gameData.wordsToWin, -10);
     RenderNewGame();
   });
   addOnClick("next-btn", RenderTeamsSettings);
@@ -104,12 +150,13 @@ const RenderTeamsSettings = () => {
     console.log(gameData.isLastWordForAll);
   });
   addOnClick("add-team", () => {
-    if (gameData.teams.length < 5) gameData.teams.push({ name: "", points: 0 });
+    if (gameData.teams.length < 5)
+      gameData.teams.push({ name: "", points: 0, color: "#38F5F5" });
     RenderTeamsSettings();
   });
   addOnClick("next-btn", () => {
-    console.log(gameData.teams);
     if (
+      gameData.teams.length >= 2 &&
       gameData.teams.every(
         (team) => team.name.trim() && team.name.trim().length < 17
       )
@@ -125,26 +172,32 @@ const RenderTeamsSettings = () => {
     });
     document
       .getElementById(`edit-team-name-${i}`)
-      .addEventListener("input", (e) => {
+      .addEventListener("change", (e) => {
         gameData.teams[i].name =
           e.target.value[0].toUpperCase() +
           e.target.value.slice(1).toLowerCase();
+      });
+    document
+      .getElementById(`edit-team-color-${i}`)
+      .addEventListener("change", (e) => {
+        gameData.teams[i].color = e.target.value;
       });
   }
 };
 
 const RenderTeamsPoints = () => {
-  mainContainer.innerHTML = TeamsPoints(gameData.teams);
-  addOnClick("go-back-btn", RenderMainMenu);
-  addOnClick("next-btn", RenderRound);
-};
+  mainContainer.innerHTML = TeamsPoints(gameData);
 
-const swipeCard = (up) => {
-  roundData.swipedWords.push({
-    word: wordsForRound[roundData.swipedWordsLength],
-    guessed: up,
-  });
-  console.log(roundData);
+  addOnClick("go-back-btn", RenderMainMenu);
+
+  if (!gameData.isFinish) {
+    addOnClick("next-btn", RenderRound);
+  } else {
+    addOnClick("close-modal", () => {
+      document.getElementById("modal-container").classList.remove("show");
+    });
+    addOnClick("end-game", RenderMainMenu);
+  }
 };
 
 const RenderRound = () => {
@@ -153,14 +206,14 @@ const RenderRound = () => {
   roundData = {
     swipedWords: [],
     swipedWordsLength: 0,
-    lastWordTeamId: gameData.currentTeamId,
+    lastWordTeamId: -1,
     teamId: gameData.currentTeamId,
   };
 
   CardSlider(
     swipeCard,
     getNewWord,
-    gameData.roundTime / 3,
+    gameData.roundTime,
     gameData.isLastWordForAll,
     RenderPoints
   );
@@ -192,7 +245,7 @@ const RenderPoints = (scrollPos) => {
         RenderPoints(currentScrollPos);
       })
     );
-    addOnClick(`choose-noone`, () => {
+    addOnClick("choose-noone", () => {
       roundData.lastWordTeamId = -1;
       document.getElementById("modal-container").classList.remove("show");
 
@@ -205,17 +258,32 @@ const RenderPoints = (scrollPos) => {
       document.getElementById("modal-container").classList.add("show");
     });
   }
-
   addOnClick("go-back-btn", RenderMainMenu);
   addOnClick("next-btn", () => {
     gameData.teams[gameData.currentTeamId].points += getPoints(
       roundData.swipedWords,
-      !gameData.isLastWordForAll ||
-        roundData.lastWordTeamId === gameData.currentTeamId
+      gameData.isLastWordForAll,
+      roundData.lastWordTeamId === gameData.currentTeamId
     );
 
     if (gameData.isLastWordForAll && roundData.lastWordTeamId !== -1) {
       gameData.teams[roundData.lastWordTeamId].points++;
+    }
+
+    const curPoints = +gameData.teams[gameData.currentTeamId].points;
+
+    if (curPoints > gameData.maxPoints) {
+      gameData.maxPoints = curPoints;
+    }
+
+    if (
+      gameData.maxPoints >= gameData.wordsToWin &&
+      gameData.currentTeamId === gameData.teams.length - 1
+    ) {
+      gameData.isOvertime = true;
+      gameData.isFinish =
+        gameData.teams.filter((team) => team.points === gameData.maxPoints)
+          .length === 1;
     }
 
     gameData.currentTeamId = getNextCurrentTeamId(
