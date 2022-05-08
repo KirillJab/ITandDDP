@@ -6,73 +6,69 @@ import { Round } from "./components/round.js";
 import { CardSlider } from "./components/cardSlider.js";
 import { Points } from "./components/points.js";
 import { getPoints } from "./helpers/points.helpers.js";
+import { GET_DEFAULT_GAME_DATA } from "./consts/gameData.consts";
 import {
   getNewTime,
   getNewWordsAmount,
   getNextCurrentTeamId,
 } from "./helpers/gameData.helpers.js";
+import {
+  signInWithEmail,
+  signUpWithEmail,
+  redirectGoogleSignUp,
+  monitorAuthState,
+  signOutFromApp,
+  backUpGameData,
+  fetchGameData,
+  getWords,
+  getDictionary,
+} from "./api/server.js";
 
-let gameData;
+import "./styles.css";
+import "./styles/checkbox.css";
 
-const resetGameData = () => {
-  gameData = {
-    dictionary: 0,
-    roundTime: 60,
-    wordsToWin: 50,
-    isLastWordForAll: false,
-    teams: [
-      {
-        name: "Весёлые тюлени",
-        points: 0,
-        color: "#FFF38B",
-      },
-      {
-        name: "Мудрые черепахи",
-        points: 0,
-        color: "#38F5F5",
-      },
-    ],
-    currentTeamId: 0,
-    maxPoints: 0,
-    isOvertime: false,
-    isFinish: false,
-  };
+let userData = {
+  id: "",
+  name: "",
+  hasSavedGame: false,
+  isSignedIn: false,
 };
 
+let gameData;
 let roundData = {
   swipedWords: [],
   swipedWordsLength: 0,
   lastWordTeamId: -1,
   teamId: 0,
 };
+let wordsForRound = [];
 
-const wordsForRound = [
-  "название",
-  "мост",
-  "семья",
-  "изделие",
-  "книжка",
-  "новое",
-  "мэр",
-  "возможность",
-  "итог",
-  "баба",
-  "категория",
-  "телевизор",
-];
+const setGameData = (newData) => {
+  gameData = JSON.parse(JSON.stringify(newData));
+};
+const setUserData = (newData) => {
+  userData = JSON.parse(JSON.stringify(newData));
+};
+const setWordsForRound = (newData) => {
+  wordsForRound = JSON.parse(JSON.stringify(newData));
+};
+
+const getNewWord = () => {
+  if (roundData.swipedWordsLength >= wordsForRound.length) {
+    roundData.swipedWordsLength = 0;
+  }
+  if (roundData.swipedWordsLength === wordsForRound.length - 2) {
+    setWordsForRound(getWords(getDictionary(gameData.dictionaryNumber), 100));
+    roundData.swipedWordsLength = 0;
+  }
+
+  return wordsForRound[roundData.swipedWordsLength++];
+};
 
 const mainContainer = document.getElementById("game-menu-container");
 
 const addOnClick = (id, callback) => {
   document.getElementById(id).addEventListener("click", callback);
-};
-
-const getNewWord = () => {
-  //TODO
-  if (roundData.swipedWordsLength >= wordsForRound.length) {
-    roundData.swipedWordsLength = 0;
-  }
-  return wordsForRound[roundData.swipedWordsLength++];
 };
 
 const swipeCard = (word, guessed) => {
@@ -83,11 +79,48 @@ const swipeCard = (word, guessed) => {
 };
 
 const RenderMainMenu = () => {
-  mainContainer.innerHTML = MainMenu();
-  addOnClick("new-game-btn", () => {
-    resetGameData();
-    RenderNewGame();
-  });
+  mainContainer.innerHTML = MainMenu(userData);
+
+  if (!userData.isSignedIn) {
+    const email = document.getElementById("email");
+    const password = document.getElementById("password");
+
+    addOnClick("sign-in", () => {
+      signInWithEmail(email.value, password.value);
+    });
+
+    addOnClick("sign-up", () => {
+      signUpWithEmail(email.value, password.value);
+    });
+
+    addOnClick("sign-in-with-google", () => redirectGoogleSignUp());
+  } else {
+    if (userData.hasSavedGame) {
+      addOnClick("continue-game-btn", () => {
+        fetchGameData(userData.id, setGameData).then(RenderTeamsPoints);
+      });
+    }
+    addOnClick("new-game-btn", () => {
+      setGameData(GET_DEFAULT_GAME_DATA);
+      RenderNewGame();
+    });
+    addOnClick("sign-out-btn", () => {
+      setUserData({
+        id: "",
+        name: "",
+        hasSavedGame: false,
+        isSignedIn: false,
+      });
+      signOutFromApp();
+    });
+  }
+};
+
+const saveAndExit = () => {
+  if (gameData.maxPoints > 0) {
+    backUpGameData(userData, gameData);
+  }
+  RenderMainMenu();
 };
 
 const RenderNewGame = () => {
@@ -160,14 +193,19 @@ const RenderTeamsSettings = () => {
 const RenderTeamsPoints = () => {
   mainContainer.innerHTML = TeamsPoints(gameData);
 
-  addOnClick("go-back-btn", RenderMainMenu);
+  addOnClick("go-back-btn", saveAndExit);
 
   if (!gameData.isFinish) {
     addOnClick("next-btn", RenderRound);
+
+    if (gameData.maxPoints > 0) {
+      backUpGameData(userData, gameData);
+    }
   } else {
     addOnClick("close-modal", () => {
       document.getElementById("modal-container").classList.remove("show");
     });
+
     addOnClick("end-game", RenderMainMenu);
   }
 };
@@ -181,6 +219,8 @@ const RenderRound = () => {
     lastWordTeamId: -1,
     teamId: gameData.currentTeamId,
   };
+
+  setWordsForRound(getWords(getDictionary(gameData.dictionaryNumber), 100));
 
   CardSlider(
     swipeCard,
@@ -230,7 +270,7 @@ const RenderPoints = (scrollPos) => {
       document.getElementById("modal-container").classList.add("show");
     });
   }
-  addOnClick("go-back-btn", RenderMainMenu);
+  addOnClick("go-back-btn", saveAndExit);
   addOnClick("next-btn", () => {
     gameData.teams[gameData.currentTeamId].points += getPoints(
       roundData.swipedWords,
@@ -268,3 +308,5 @@ const RenderPoints = (scrollPos) => {
 };
 
 RenderMainMenu();
+monitorAuthState(setUserData, RenderMainMenu);
+// signOutFromApp();

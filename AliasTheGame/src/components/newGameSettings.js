@@ -1,5 +1,8 @@
 import { Header } from "./header.js";
 
+import "../styles/vocabulary.css";
+import "../styles/settings.css";
+
 export const NewGameSettings = ({ roundTime, wordsToWin }) => `
 ${Header()}
 <section class="game-vocabulary">

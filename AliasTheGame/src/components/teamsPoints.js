@@ -1,5 +1,7 @@
 import { Header } from "./header.js";
 
+import "../styles/teams-points.css";
+
 export const TeamsPoints = ({ teams, currentTeamId, isOvertime, isFinish }) => `
 ${Header()}
 <section class="teams-points-section">

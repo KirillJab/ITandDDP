@@ -1,5 +1,5 @@
 export const getNewTime = (roundTime, delta) => {
-  return roundTime + delta >= 30 && roundTime + delta <= 600
+  return roundTime + delta >= 10 && roundTime + delta <= 600
     ? roundTime + delta
     : roundTime;
 };

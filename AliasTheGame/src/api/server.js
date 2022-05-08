@@ -1,19 +1,58 @@
-// Import the functions you need from the SDKs you need
-
 import { initializeApp } from "firebase/app";
+import {
+  getFirestore,
+  collection,
+  doc,
+  getDoc,
+  setDoc,
+  connectFirestoreEmulator,
+} from "firebase/firestore";
 import {
   getAuth,
   connectAuthEmulator,
   signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  GoogleAuthProvider,
+  onAuthStateChanged,
+  signInWithRedirect,
+  signOut,
 } from "firebase/auth";
 
-// TODO: Add SDKs for Firebase products that you want to use
+import "./dictionaries/dictionaryEasy.json";
+import "./dictionaries/dictionaryMedium.json";
+import "./dictionaries/dictionaryHard.json";
 
-// https://firebase.google.com/docs/web/setup#available-libraries
+function fetchJSONFile(path, callback) {
+  var httpRequest = new XMLHttpRequest();
+  httpRequest.onreadystatechange = function () {
+    if (httpRequest.readyState === 4) {
+      if (httpRequest.status === 200) {
+        var data = JSON.parse(httpRequest.responseText);
+        if (callback) callback(data);
+      }
+    }
+  };
+  httpRequest.open("GET", path);
+  httpRequest.send();
+}
 
-// Your web app's Firebase configuration
+let dictionaryEasy;
+let dictionaryMedium;
+let dictionaryHard;
 
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const setDictionaryEasy = (newDict) => (dictionaryEasy = newDict);
+const setDictionaryMedium = (newDict) => (dictionaryMedium = newDict);
+const setDictionaryHard = (newDict) => (dictionaryHard = newDict);
+
+fetchJSONFile(`./dictionaries/dictionaryEasy.json`, ({ dictionary }) => {
+  setDictionaryEasy(dictionary);
+});
+fetchJSONFile(`./dictionaries/dictionaryMedium.json`, ({ dictionary }) => {
+  setDictionaryMedium(dictionary);
+});
+fetchJSONFile(`./dictionaries/dictionaryHard.json`, ({ dictionary }) => {
+  setDictionaryHard(dictionary);
+});
 
 const firebaseConfig = {
   apiKey: "AIzaSyD5e0erMOoSw8rzH4AwlWchAsge_AYfqcg",
@@ -25,24 +64,93 @@ const firebaseConfig = {
   measurementId: "G-7B7LB30ZEV",
 };
 
-// Initialize Firebase
-
 const firebaseApp = initializeApp(firebaseConfig);
-
+const db = getFirestore(firebaseApp);
 const auth = getAuth(firebaseApp);
+const provider = new GoogleAuthProvider();
 
-connectAuthEmulator(auth, "http://localhost:9099");
+// connectAuthEmulator(auth, "http://localhost:9099");
+// connectFirestoreEmulator(db, "localhost", 8081);
 
-export const loginEmailPassword = async () => {
-  // const loginEmail = email.value;
-  // const loginPassword = password.value;
-
-  const loginEmail = "test@test.com";
-  const loginPassword = "1234";
-
-  const userCredentials = await signInWithEmailAndPassword(
-    auth,
-    loginEmail,
-    loginPassword
+export const signInWithEmail = async (loginEmail, loginPassword) => {
+  await signInWithEmailAndPassword(auth, loginEmail, loginPassword).catch(
+    (error) => {
+      alert(error.message);
+    }
   );
+};
+
+export const signUpWithEmail = async (loginEmail, loginPassword) => {
+  if (!loginEmail.trim()) return;
+
+  await createUserWithEmailAndPassword(auth, loginEmail, loginPassword).catch(
+    (error) => {
+      alert(error.message);
+    }
+  );
+};
+
+export const monitorAuthState = async (setUserData, callback) =>
+  await onAuthStateChanged(auth, (user) => {
+    if (user) {
+      const docRef = doc(db, "users", user.uid);
+
+      getDoc(docRef)
+        .then((doc) => {
+          if (!doc.data()) {
+            setDoc(docRef, { savedGameData: null });
+          }
+        })
+        .finally(() =>
+          getDoc(docRef).then((doc) => {
+            setUserData({
+              hasSavedGame: !!doc.data().savedGameData,
+              id: user.uid,
+              isSignedIn: true,
+              name: user.displayName,
+            });
+            callback();
+          })
+        );
+    } else {
+      setUserData({});
+      callback();
+    }
+  });
+
+export const redirectGoogleSignUp = () =>
+  signInWithRedirect(auth, provider).catch((error) => {
+    alert(error.message);
+  });
+
+export const signOutFromApp = async () => {
+  await signOut(auth);
+};
+
+export const fetchGameData = async (id, setData) => {
+  const docRef = doc(db, "users", id);
+
+  await getDoc(docRef).then((doc) => {
+    if (doc.data()) {
+      setData(doc.data().savedGameData);
+    }
+  });
+};
+
+export const backUpGameData = async (userData, gameData) => {
+  const docRef = doc(db, "users", userData.id);
+  await setDoc(docRef, { savedGameData: gameData });
+  console.log("backed up some data", gameData);
+  userData.hasSavedGame = true;
+};
+
+export const getDictionary = (difficulty) =>
+  difficulty === 1
+    ? dictionaryEasy
+    : difficulty === 2
+    ? dictionaryMedium
+    : dictionaryHard;
+
+export const getWords = (dictionary, count) => {
+  return dictionary.slice(0, count);
 };

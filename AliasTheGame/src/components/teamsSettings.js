@@ -1,5 +1,9 @@
 import { Header } from "./header.js";
 
+import "../styles/teams.css";
+import "../styles/points.css";
+import "../styles/last-word.css";
+
 export const TeamsSettings = ({ isLastWordForAll, teams }) => `
 ${Header()}
 <div class="bold-underline"></div>

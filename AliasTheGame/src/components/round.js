@@ -1,3 +1,5 @@
+import "../styles/round.css";
+
 export const Round = ({ name }) => `
 <div class="menu-header-background"></div>
 <div class="header">
