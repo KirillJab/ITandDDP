@@ -6,6 +6,18 @@
 
 You can do so by dividing into teams and giving them names. Then you will have to choose the difficulty of the game and tweak some settings, which will define the way you'll play the game. Teams take turns on explaining words in given time period. The idea is to explain them using synonyms, opposites or clues so that your team mates guess as many words from the cards as possible before the time runs out. The team gets same amount of points as words guessed.
 
+---
+
+# !!! NEW !!!
+
+# Deployed project
+
+### You can see the preview of the project [here](https://alias-the-game-32311--preview-5qit1kh3.web.app)
+
+Registration with email and google services is available
+
+---
+
 # Mockup:
 
 ##### Project Figma Mockup could be found [here](https://www.figma.com/file/94oRfuGIiwPMmXnj0GnKri/Alias-The-Game?node-id=0%3A1)
