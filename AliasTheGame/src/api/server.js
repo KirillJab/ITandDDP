@@ -144,13 +144,21 @@ export const backUpGameData = async (userData, gameData) => {
   userData.hasSavedGame = true;
 };
 
+export const deleteSavedGame = async (userData) => {
+  const docRef = doc(db, "users", userData.id);
+  await setDoc(docRef, { savedGameData: null });
+};
+
 export const getDictionary = (difficulty) =>
-  difficulty === 1
+  difficulty === 0
     ? dictionaryEasy
-    : difficulty === 2
+    : difficulty === 1
     ? dictionaryMedium
     : dictionaryHard;
 
 export const getWords = (dictionary, count) => {
-  return dictionary.slice(0, count);
+  const words = [];
+  while (words.length !== count)
+    words.push(dictionary[Math.floor(Math.random() * dictionary.length)]);
+  return words;
 };

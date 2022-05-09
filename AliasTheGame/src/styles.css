@@ -4,9 +4,15 @@
   --light-orange: #ffb703;
   --dark-orange: #fb8500;
 }
+
+* {
+  box-sizing: border-box;
+}
+
 a {
   text-decoration: none;
 }
+
 html,
 body {
   margin: 0px;
@@ -23,6 +29,7 @@ body {
   justify-content: center;
   align-items: center;
 }
+
 button {
   box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
   background: var(--dark-blue);
@@ -70,6 +77,7 @@ h2 {
   line-height: 53px;
   margin: 0px;
 }
+
 h3 {
   font-style: normal;
   font-weight: 400;
@@ -77,6 +85,7 @@ h3 {
   line-height: 30px;
   margin: 0px;
 }
+
 p {
   font-style: normal;
   font-weight: 300;
@@ -84,6 +93,7 @@ p {
   line-height: 24px;
   margin: 8px 0;
 }
+
 ul {
   list-style-type: none;
 }
@@ -164,4 +174,21 @@ ul {
   height: 0px;
   margin-top: 5px;
   border-bottom: 2px solid var(--dark-blue);
+}
+
+@media only screen and (max-width: 560px) {
+  h2 {
+    font-size: 35px;
+    line-height: 45px;
+  }
+
+  h3 {
+    font-size: 30px;
+  }
+
+  p {
+    font-size: 20px;
+    line-height: 20px;
+    margin: 0px;
+  }
 }

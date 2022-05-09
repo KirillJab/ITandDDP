@@ -34,6 +34,7 @@
   overflow: hidden;
   border: 1px solid #ffffff;
 }
+
 .teams-section .team-icon input[type="color"] {
   position: absolute;
   left: -5px;
@@ -73,4 +74,34 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+@media only screen and (max-width: 560px) {
+  .teams-section ul {
+    width: 100%;
+    height: 200px;
+    padding-left: 20px;
+  }
+  .teams-section .row input {
+    margin-left: 25px;
+
+    font-weight: 400;
+    font-size: 28px;
+
+    color: #ffffff;
+  }
+
+  .teams-section .team-icon {
+    width: 30px;
+    min-width: 30px;
+    height: 30px;
+    margin-top: 8px;
+  }
+  .teams-section .bold-underline {
+    margin-left: 10px;
+  }
+  .teams-section .thin-underline {
+    width: 80%;
+    margin-left: 58px;
+  }
 }

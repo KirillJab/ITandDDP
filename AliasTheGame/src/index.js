@@ -6,11 +6,14 @@ import { Round } from "./components/round.js";
 import { CardSlider } from "./components/cardSlider.js";
 import { Points } from "./components/points.js";
 import { getPoints } from "./helpers/points.helpers.js";
-import { GET_DEFAULT_GAME_DATA } from "./consts/gameData.consts";
+import { DEFAULT_GAME_DATA, DEFAULT_USER_DATA } from "./consts/gameData.consts";
 import {
   getNewTime,
   getNewWordsAmount,
   getNextCurrentTeamId,
+  getPrevDictionaryId,
+  getNextDictionaryId,
+  getDictionaryById,
 } from "./helpers/gameData.helpers.js";
 import {
   signInWithEmail,
@@ -22,6 +25,7 @@ import {
   fetchGameData,
   getWords,
   getDictionary,
+  deleteSavedGame,
 } from "./api/server.js";
 
 import "./styles.css";
@@ -58,7 +62,7 @@ const getNewWord = () => {
     roundData.swipedWordsLength = 0;
   }
   if (roundData.swipedWordsLength === wordsForRound.length - 2) {
-    setWordsForRound(getWords(getDictionary(gameData.dictionaryNumber), 100));
+    setWordsForRound(getWords(getDictionary(gameData.dictionaryId), 100));
     roundData.swipedWordsLength = 0;
   }
 
@@ -101,7 +105,7 @@ const RenderMainMenu = () => {
       });
     }
     addOnClick("new-game-btn", () => {
-      setGameData(GET_DEFAULT_GAME_DATA);
+      setGameData(DEFAULT_GAME_DATA);
       RenderNewGame();
     });
     addOnClick("sign-out-btn", () => {
@@ -127,6 +131,25 @@ const RenderNewGame = () => {
   mainContainer.innerHTML = NewGameSettings(gameData);
 
   addOnClick("go-back-btn", RenderMainMenu);
+
+  addOnClick("choose-vocabulary-prev", () => {
+    const newId = getPrevDictionaryId(gameData.dictionaryId);
+    setGameData({
+      ...gameData,
+      dictionaryId: newId,
+      dictionaryName: getDictionaryById(newId).name,
+    });
+    RenderNewGame();
+  });
+  addOnClick("choose-vocabulary-next", () => {
+    const newId = getNextDictionaryId(gameData.dictionaryId);
+    setGameData({
+      ...gameData,
+      dictionaryId: newId,
+      dictionaryName: getDictionaryById(newId).name,
+    });
+    RenderNewGame();
+  });
   addOnClick("add-time", () => {
     gameData.roundTime = getNewTime(gameData.roundTime, 30);
     RenderNewGame();
@@ -206,7 +229,12 @@ const RenderTeamsPoints = () => {
       document.getElementById("modal-container").classList.remove("show");
     });
 
-    addOnClick("end-game", RenderMainMenu);
+    addOnClick("end-game", () => {
+      deleteSavedGame(userData);
+      setUserData({ ...userData, hasSavedGame: false });
+      setGameData({ DEFAULT_GAME_DATA });
+      RenderMainMenu();
+    });
   }
 };
 
@@ -220,7 +248,7 @@ const RenderRound = () => {
     teamId: gameData.currentTeamId,
   };
 
-  setWordsForRound(getWords(getDictionary(gameData.dictionaryNumber), 100));
+  setWordsForRound(getWords(getDictionary(gameData.dictionaryId), 100));
 
   CardSlider(
     swipeCard,

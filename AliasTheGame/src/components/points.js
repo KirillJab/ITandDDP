@@ -36,7 +36,7 @@ ${Header()}
                 <h3>${word.word}</h3>
             </div>
             ${
-              index < array.length - 2 + +isLastWordForAll
+              index < array.length - 1
                 ? `<div class="thin-underline"></div>`
                 : ""
             }

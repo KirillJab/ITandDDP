@@ -6,7 +6,6 @@ import "../styles/last-word.css";
 
 export const TeamsSettings = ({ isLastWordForAll, teams }) => `
 ${Header()}
-<div class="bold-underline"></div>
 <section class="last-word-section">
     <aside>
         <span class="material-icon">campaign_two_tone</span>

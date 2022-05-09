@@ -3,14 +3,14 @@ import { Header } from "./header.js";
 import "../styles/vocabulary.css";
 import "../styles/settings.css";
 
-export const NewGameSettings = ({ roundTime, wordsToWin }) => `
+export const NewGameSettings = ({ roundTime, wordsToWin, dictionaryName }) => `
 ${Header()}
 <section class="game-vocabulary">
     <div>
         <span class="vocabularies-description">Cловарь:</span>
-        <button class="vocabularies-button" id="choose-vocabulary-next">
+        <button class="vocabularies-button" id="choose-vocabulary-prev">
             <span class="material-icon">arrow_back</span></button>
-        <span id="choosen-dictionary">Сложные слова</span>
+        <span id="choosen-dictionary">${dictionaryName}</span>
         <button class="vocabularies-button" id="choose-vocabulary-next">
             <span class="material-icon">arrow_forward</span></button>
     </div>

@@ -82,3 +82,24 @@
   margin: 0px;
   font-size: 20px;
 }
+
+@media only screen and (max-width: 560px) {
+  .team-turn-section #team-name-turn {
+    width: 100%;
+    font-size: 25px;
+    margin: 20px 0px 0px 0px;
+  }
+
+  .team-turn-section .team-turn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 13px 0px 0px 15px;
+    width: 50%;
+  }
+
+  .team-turn-section .team-turn .underline {
+    width: 90%;
+  }
+}

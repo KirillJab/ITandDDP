@@ -13,12 +13,8 @@
   border-radius: 10px;
 }
 
-#modal .inputs label {
-  font-size: 32px;
-  color: var(--dark-blue);
-}
-
 #modal .inputs input {
+  width: 100%;
   font-size: 25px;
   margin-top: 20px;
   color: var(--dark-blue);
@@ -30,6 +26,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+#modal .controls button > span {
+  font-size: 25px;
 }
 
 #modal .controls button {

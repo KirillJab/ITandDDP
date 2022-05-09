@@ -43,8 +43,8 @@
 }
 
 .checkbox .checkmark:after {
-  left: 9px;
-  top: 5px;
+  left: 8px;
+  top: 4px;
   width: 5px;
   height: 10px;
   border: solid #ffffff;

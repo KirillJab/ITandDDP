@@ -133,3 +133,53 @@
   border-color: #f54343 transparent transparent transparent;
   transform: translateX(-50%);
 }
+
+@media only screen and (max-width: 560px) {
+  .header {
+    padding: 10px 10px;
+  }
+  .header span {
+    font-size: 38px;
+  }
+  #turn-timer {
+    font-size: 60px;
+  }
+
+  .cards-container {
+    top: -3%;
+    left: 23%;
+  }
+
+  .cards-container .card,
+  .cards-container .background-card {
+    position: absolute;
+    height: 350px;
+    width: 250px;
+    top: 18%;
+  }
+
+  .cards-container .card span {
+    width: 100%;
+    font-size: 40px;
+    text-align: center;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+    color: var(--dark-blue);
+  }
+  .cards-container .cards-top.triangle {
+    left: 42%;
+  }
+  .cards-container .cards-bottom.triangle {
+    left: 42%;
+  }
+
+  .round-section .earned-points-display {
+    margin-left: 16px;
+  }
+  .round-section .earned-points-display div {
+    width: 60px;
+    height: 60px;
+    font-size: 30px;
+  }
+}
