@@ -105,12 +105,12 @@ namespace ITandDDP_Lab1
 
                     // To check for right order uncomment this lines
 
-                    data = Encoding.Unicode.GetBytes($"(%{1 + nextSentMessageIndex++}%) {msg}");
-                    socket.SendTo(data, new IPEndPoint(IPAddress.Parse(host), connectionPort));
-                    data = Encoding.Unicode.GetBytes($"(%{1 + nextSentMessageIndex++}%) {msg}");
-                    socket.SendTo(data, new IPEndPoint(IPAddress.Parse(host), connectionPort));
-                    data = Encoding.Unicode.GetBytes($"(%{nextSentMessageIndex++ - 2}%) {msg}");
-                    socket.SendTo(data, new IPEndPoint(IPAddress.Parse(host), connectionPort));
+                    //data = Encoding.Unicode.GetBytes($"(%{1 + nextSentMessageIndex++}%) {msg}");
+                    //socket.SendTo(data, new IPEndPoint(IPAddress.Parse(host), connectionPort));
+                    //data = Encoding.Unicode.GetBytes($"(%{1 + nextSentMessageIndex++}%) {msg}");
+                    //socket.SendTo(data, new IPEndPoint(IPAddress.Parse(host), connectionPort));
+                    //data = Encoding.Unicode.GetBytes($"(%{nextSentMessageIndex++ - 2}%) {msg}");
+                    //socket.SendTo(data, new IPEndPoint(IPAddress.Parse(host), connectionPort));
                 }
             }
             catch (Exception)
@@ -152,7 +152,7 @@ namespace ITandDDP_Lab1
                         var message = Regex.Replace(sb.ToString(), indexPattern, "");
 
                         // To check for right order uncomment this line
-                        message = sb;
+                        //message = sb;
 
                         if (matchCollection.Count == 1)
                         {
