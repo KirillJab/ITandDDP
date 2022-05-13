@@ -1,6 +1,7 @@
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace ITandDDP_Lab1
 {
@@ -11,6 +12,9 @@ namespace ITandDDP_Lab1
         private static int connectionPort;
         private static Socket? socket;
         private static string userName = "";
+        private static int nextSentMessageIndex = 0;
+        private static int nextRecievedMessageIndex = 0;
+        private static Dictionary<int, string> recievedQueuedMessages = new Dictionary<int, string>();
 
         static void Main(string[] args)
         {
@@ -55,7 +59,7 @@ namespace ITandDDP_Lab1
 
         private static void Connect()
         {
-            Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
             socket.Bind(new IPEndPoint(IPAddress.Parse(host), listeningPort));
             IPEndPoint connectionEndPoint = new IPEndPoint(IPAddress.Parse(host), connectionPort);
 
@@ -64,6 +68,8 @@ namespace ITandDDP_Lab1
                 try
                 {
                     socket.Connect(connectionEndPoint);
+                    socket.Shutdown(SocketShutdown.Both);
+                    socket.Close();
                     break;
                 }
                 catch (SocketException)
@@ -93,7 +99,17 @@ namespace ITandDDP_Lab1
 
                 while (true)
                 {
-                    byte[] data = Encoding.Unicode.GetBytes(GetMessageWithAuthor(Console.ReadLine()));
+                    string msg = GetMessageWithAuthor(Console.ReadLine());
+                    byte[] data = Encoding.Unicode.GetBytes($"(%{nextSentMessageIndex++}%) {msg}");
+                    socket.SendTo(data, new IPEndPoint(IPAddress.Parse(host), connectionPort));
+
+                    // To check for right order uncomment this lines
+
+                    data = Encoding.Unicode.GetBytes($"(%{1 + nextSentMessageIndex++}%) {msg}");
+                    socket.SendTo(data, new IPEndPoint(IPAddress.Parse(host), connectionPort));
+                    data = Encoding.Unicode.GetBytes($"(%{1 + nextSentMessageIndex++}%) {msg}");
+                    socket.SendTo(data, new IPEndPoint(IPAddress.Parse(host), connectionPort));
+                    data = Encoding.Unicode.GetBytes($"(%{nextSentMessageIndex++ - 2}%) {msg}");
                     socket.SendTo(data, new IPEndPoint(IPAddress.Parse(host), connectionPort));
                 }
             }
@@ -109,13 +125,14 @@ namespace ITandDDP_Lab1
 
         private static void ListenToPort()
         {
+            string indexPattern = @"^\(%(\d+)%\) ";
+
             try
             {
                 socket.Bind(new IPEndPoint(IPAddress.Parse(host), listeningPort));
 
                 while (true)
                 {
-                    StringBuilder sb = new StringBuilder();
                     EndPoint endPoint = new IPEndPoint(IPAddress.Parse(host), connectionPort);
 
                     do
@@ -123,11 +140,51 @@ namespace ITandDDP_Lab1
                         var data = new byte[64];
                         var count = socket.ReceiveFrom(data, ref endPoint);
 
-                        sb.Append(Encoding.Unicode.GetString(data, 0, count));
+                        string sb = (Encoding.Unicode.GetString(data, 0, count));
+
+                        var matchCollection = Regex.Matches(sb, indexPattern);
+
+                        if (matchCollection.Count == 0)
+                        {
+                            continue;
+                        }
+
+                        var message = Regex.Replace(sb.ToString(), indexPattern, "");
+
+                        // To check for right order uncomment this line
+                        message = sb;
+
+                        if (matchCollection.Count == 1)
+                        {
+                            int recievedIndex = int.Parse(matchCollection[0].Groups[1].Value);
+
+                            if (recievedIndex == nextRecievedMessageIndex)
+                            {
+                                Console.WriteLine(message);
+                                nextRecievedMessageIndex++;
+                                while (recievedQueuedMessages.Count > 0)
+                                {
+                                    var curMsg = recievedQueuedMessages[nextRecievedMessageIndex];
+                                    if (curMsg != null)
+                                    {
+                                        Console.WriteLine(curMsg);
+                                        recievedQueuedMessages.Remove(nextRecievedMessageIndex);
+                                        nextRecievedMessageIndex++;
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("Some data was lost! Waiting for the message...");
+                                        break;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                recievedQueuedMessages.Add(recievedIndex, message);
+                            }
+                        }
 
                     } while (socket.Available > 0);
-
-                    Console.WriteLine(sb.ToString());
                 }
             }
             catch (Exception)
