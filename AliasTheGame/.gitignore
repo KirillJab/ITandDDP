@@ -1,0 +1,6 @@
+node_modules/
+dist/
+ui-debug.log
+public/
+src/
+.firebase/
