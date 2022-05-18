@@ -1,0 +1,65 @@
+.team-turn-section {
+  width: 100%;
+}
+
+.team-turn-section .team-turn div span {
+  font-size: 36px;
+}
+
+.team-turn-section #team-name-turn {
+  margin-left: 30px;
+}
+
+.team-turn-section .team-turn .underline {
+  width: 100%;
+  border-bottom: 1px solid #023047;
+}
+
+.team-turn-section .points-screen {
+  margin-top: 15px;
+}
+
+.team-turn-section .points-screen ul {
+  height: 270px;
+  padding: 5px 0px 0px 0px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.team-turn-section .points-screen .points-screen-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#points-from-turn {
+  margin-right: 30px;
+  font-size: 36px;
+}
+
+.team-turn-section li > div {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.team-turn-section .row {
+  box-sizing: border-box;
+}
+
+.team-turn-section .row h3 {
+  margin: 10px 0px 0px 0px;
+  text-align: end;
+  justify-content: start;
+}
+
+.team-turn-section .row .checkbox {
+  width: 30px;
+  height: 30px;
+}
+
+.team-turn-section .row .thin-underline {
+  width: 100%;
+  margin: 10px 0px 0px 0px;
+}
