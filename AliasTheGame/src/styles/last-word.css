@@ -6,10 +6,10 @@
   align-items: center;
 }
 
-.last-word-section aside {
+.last-word-section .row-aside {
   width: 15%;
 }
-.last-word-section article {
+.last-word-section .row-article {
   width: 85%;
 }
 .last-word-section .checkbox {
@@ -22,10 +22,10 @@
     justify-content: space-around;
     align-items: center;
   }
-  .last-word-section article {
+  .last-word-section .row-article {
     width: 60%;
   }
-  .last-word-section h3 {
+  .last-word-section h2 {
     font-size: 25px;
   }
 }
