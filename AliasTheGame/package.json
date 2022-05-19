@@ -1,0 +1,26 @@
+{
+  "name": "aliasthegame",
+  "version": "1.0.0",
+  "description": "---",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack serve",
+    "build": "webpack build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Kirill Yablonsky",
+  "license": "ISC",
+  "dependencies": {
+    "firebase": "^9.8.0",
+    "firebase-cli": "^1.2.0",
+    "firebaseui": "^6.0.1"
+  },
+  "devDependencies": {
+    "css-loader": "^6.7.1",
+    "html-webpack-plugin": "^5.5.0",
+    "style-loader": "^3.3.1",
+    "webpack": "5.72.0",
+    "webpack-cli": "4.9.2",
+    "webpack-dev-server": "^4.9.0"
+  }
+}

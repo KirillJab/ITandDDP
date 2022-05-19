@@ -1,0 +1,31 @@
+.triangle {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 60px 80px 0 80px;
+  border-color: #007bff transparent transparent transparent;
+}
+/* 
+.triangle:before,
+.triangle:after {
+  content: "";
+  position: absolute;
+  background-color: inherit;
+}
+
+.triangle,
+.triangle:before,
+.triangle:after {
+  width: 10px;
+  height: 10px;
+  border-top-right-radius: 30%;
+}
+
+.triangle:before {
+  transform: rotate(-135deg) skewX(-45deg) scale(1.414, 0.707)
+    translate(0, -50%);
+}
+
+.triangle:after {
+  transform: rotate(135deg) skewY(-45deg) scale(0.707, 1.414) translate(50%);
+} */

@@ -1,0 +1,66 @@
+.game-vocabulary {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.game-vocabulary > div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.game-vocabulary .underline {
+  width: 65%;
+  margin: 5px 5px 0 0;
+  border-bottom: 1px solid #023047;
+}
+
+.game-vocabulary #choosen-dictionary {
+  width: 190px;
+  margin-left: 10px;
+  font-weight: 300;
+  font-size: 28px;
+  text-align: center;
+}
+
+.game-vocabulary .vocabularies-description {
+  width: auto;
+  font-size: 32px;
+}
+
+.game-vocabulary .vocabularies-button:first-of-type {
+  margin-left: 50px;
+}
+
+.game-vocabulary .vocabularies-button {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  margin-left: 10px;
+  font-size: 32px;
+  text-align: center;
+  background: var(--dark-blue);
+}
+
+@media only screen and (max-width: 560px) {
+  .game-vocabulary {
+    align-items: center;
+  }
+
+  .game-vocabulary > div > span:first-child {
+    display: none;
+  }
+
+  .game-vocabulary .vocabularies-button:first-of-type {
+    margin-left: 0px;
+  }
+
+  .game-vocabulary .underline {
+    width: 45%;
+    margin-left: 5px;
+  }
+}

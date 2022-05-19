@@ -1,0 +1,48 @@
+#modal .inputs {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  margin-top: 20px;
+  padding: 20px 0px 25px 0px;
+
+  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+  background: #ffffff;
+  border-radius: 10px;
+}
+
+#modal .inputs input {
+  width: 100%;
+  font-size: 25px;
+  margin-top: 20px;
+  color: var(--dark-blue);
+  border: none;
+  border-bottom: 1px solid var(--dark-blue);
+}
+
+#modal .controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#modal .controls button > span {
+  font-size: 25px;
+}
+
+#modal .controls button {
+  display: inline-block;
+}
+
+#modal .controls ~ a {
+  display: block;
+  font-size: 25px;
+  margin-top: 15px;
+  float: right;
+  color: var(--dark-blue);
+  text-align: start;
+  text-decoration: underline;
+  cursor: pointer;
+}
