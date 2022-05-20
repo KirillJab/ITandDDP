@@ -90,7 +90,9 @@ export const signUpWithEmail = async (loginEmail, loginPassword) => {
   );
 };
 
-export const monitorAuthState = async (setUserData, callback) =>
+export const getIfLoggedIn = () => !!auth.currentUser;
+
+export const monitorAuthState = async (callback) =>
   await onAuthStateChanged(auth, (user) => {
     if (user) {
       const docRef = doc(db, "users", user.uid);
@@ -103,22 +105,20 @@ export const monitorAuthState = async (setUserData, callback) =>
         })
         .finally(() =>
           getDoc(docRef).then((doc) => {
-            setUserData({
+            callback({
               hasSavedGame: !!doc.data().savedGameData,
               id: user.uid,
               isSignedIn: true,
               name: user.displayName,
             });
-            callback();
           })
         );
     } else {
-      setUserData({});
-      callback();
+      callback({});
     }
   });
 
-export const redirectGoogleSignUp = () =>
+export const redirectGoogleSignUp = async () =>
   signInWithRedirect(auth, provider).catch((error) => {
     alert(error.message);
   });
@@ -137,11 +137,9 @@ export const fetchGameData = async (id, setData) => {
   });
 };
 
-export const backUpGameData = async (userData, gameData) => {
-  const docRef = doc(db, "users", userData.id);
+export const backUpGameData = async ({ id }, gameData) => {
+  const docRef = doc(db, "users", id);
   await setDoc(docRef, { savedGameData: gameData });
-  console.log("backed up some data", gameData);
-  userData.hasSavedGame = true;
 };
 
 export const deleteSavedGame = async (userData) => {
@@ -157,8 +155,10 @@ export const getDictionary = (difficulty) =>
     : dictionaryHard;
 
 export const getWords = (dictionary, count) => {
-  const words = [];
-  while (words.length !== count)
-    words.push(dictionary[Math.floor(Math.random() * dictionary.length)]);
-  return words;
+  const words = new Set();
+  while (words.size !== count) {
+    const word = dictionary[Math.floor(Math.random() * dictionary.length)];
+    words.add(word);
+  }
+  return [...words];
 };

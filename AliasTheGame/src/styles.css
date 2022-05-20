@@ -47,6 +47,23 @@ button {
   border: none;
 
   cursor: pointer;
+
+  transition: 0.15s ease-out;
+}
+
+button:hover {
+  transform: scale(110%);
+  transition: 0.1s ease-in;
+}
+
+button:disabled {
+  transform: none;
+  transition: 0.1s ease-in;
+  background: rgba(128, 128, 128, 0.716);
+}
+
+button:active {
+  box-shadow: #023047;
 }
 
 .button-naked {

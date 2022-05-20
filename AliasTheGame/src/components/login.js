@@ -9,11 +9,6 @@ export const Login = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
-  useEffect(() => {
-    console.log(email);
-    console.log(password);
-  }, [email]);
-
   return (
     <div id="modal-container" className="show">
       <div id="modal">

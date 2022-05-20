@@ -1,9 +1,13 @@
 import { Login } from "./login";
+import { fetchGameData, signOutFromApp } from "../api/server";
+import { getDefaultGameData } from "../consts/gameData.consts";
 
 import "../styles/game-menu.css";
 import "../styles/login.css";
 
-export const MainMenu = ({ isSignedIn, hasSavedGame, name }) => {
+export const MainMenu = ({ userData, prevPage, nextPage, updateGameData }) => {
+  const { isSignedIn, hasSavedGame, name } = userData;
+
   return (
     <>
       <div className="menu-header-background"></div>
@@ -13,11 +17,26 @@ export const MainMenu = ({ isSignedIn, hasSavedGame, name }) => {
       {name && <h1>Привет, {name}</h1>}
       <section className="game-menu-buttons">
         {hasSavedGame && (
-          <button className="menu-button" id="continue-game-btn">
+          <button
+            className="menu-button"
+            id="continue-game-btn"
+            onClick={() => {
+              updateGameData(getDefaultGameData());
+              fetchGameData(userData.id, updateGameData);
+              prevPage();
+            }}
+          >
             ПРОДОЛЖИТЬ ИГРУ
           </button>
         )}
-        <button className="menu-button" id="new-game-btn">
+        <button
+          className="menu-button"
+          id="new-game-btn"
+          onClick={() => {
+            updateGameData(getDefaultGameData());
+            nextPage();
+          }}
+        >
           НОВАЯ ИГРА
         </button>
         <a
@@ -26,11 +45,15 @@ export const MainMenu = ({ isSignedIn, hasSavedGame, name }) => {
         >
           <button className="menu-button">ПРАВИЛА</button>
         </a>
-        <button className="menu-button" id="sign-out-btn">
+        <button
+          className="menu-button"
+          id="sign-out-btn"
+          onClick={signOutFromApp}
+        >
           ВЫЙТИ
         </button>
       </section>
-      {!isSignedIn && Login()}
+      {!isSignedIn && <Login />}
     </>
   );
 };

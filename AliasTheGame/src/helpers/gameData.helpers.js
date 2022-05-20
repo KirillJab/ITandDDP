@@ -1,13 +1,13 @@
 import { DICTIONARIES_LIST } from "../consts/gameData.consts";
 
 export const getNewTime = (roundTime, delta) => {
-  return roundTime + delta >= 10 && roundTime + delta <= 600
+  return roundTime + delta >= 10 && roundTime + delta <= 300
     ? roundTime + delta
     : roundTime;
 };
 
 export const getNewWordsAmount = (wordsToWin, delta) => {
-  return wordsToWin + delta >= 10 && wordsToWin + delta <= 100
+  return wordsToWin + delta >= 10 && wordsToWin + delta <= 200
     ? wordsToWin + delta
     : wordsToWin;
 };

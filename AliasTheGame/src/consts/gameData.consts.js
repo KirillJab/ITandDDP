@@ -1,5 +1,3 @@
-import { getDictionaryById } from "../helpers/gameData.helpers";
-
 export const DICTIONARIES = {
   easy: {
     name: "Лёгкий словарь",
@@ -16,9 +14,9 @@ export const DICTIONARIES_LIST = Object.values(DICTIONARIES);
 
 export const DEFAULT_GAME_DATA = {
   dictionaryId: 0,
-  dictionaryName: getDictionaryById(0).name,
-  roundTime: 60,
-  wordsToWin: 50,
+  dictionaryName: DICTIONARIES_LIST[0].name,
+  roundTime: 2,
+  wordsToWin: 10,
   isLastWordForAll: false,
   teams: [
     {
@@ -37,6 +35,9 @@ export const DEFAULT_GAME_DATA = {
   isOvertime: false,
   isFinish: false,
 };
+
+export const getDefaultGameData = () =>
+  JSON.parse(JSON.stringify(DEFAULT_GAME_DATA));
 
 export const DEFAULT_USER_DATA = {
   id: "",

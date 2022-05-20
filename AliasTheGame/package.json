@@ -11,6 +11,7 @@
   "author": "Kirill Yablonsky",
   "license": "ISC",
   "dependencies": {
+    "@reduxjs/toolkit": "^1.8.1",
     "firebase": "^9.8.0",
     "firebase-cli": "^1.2.0",
     "firebaseui": "^6.0.1",
