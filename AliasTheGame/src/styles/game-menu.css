@@ -1,0 +1,211 @@
+.game-menu {
+  position: absolute;
+  height: 700px;
+  width: 560px;
+  padding-inline: 40px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  background: var(--light-blue);
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.25);
+  border-radius: 60px;
+
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.menu-header-background {
+  position: absolute;
+  height: 300px;
+  width: 830px;
+  left: -160px;
+  top: -150px;
+
+  border-radius: 50%;
+  background-color: var(--dark-orange);
+}
+
+.game-menu .menu-header {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.game-menu .menu-header .game-name {
+  position: relative;
+  font-family: "Kanit";
+  font-weight: 700;
+  font-size: 96px;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.game-menu .game-menu-buttons {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: end;
+}
+
+.game-menu .game-menu-buttons .menu-button {
+  width: 450px;
+  height: 90px;
+  margin-bottom: 20px;
+
+  font-size: 52px;
+  line-height: 77px;
+
+  text-align: center;
+}
+
+.menu-header .go-back-button {
+  position: absolute;
+  top: 75px;
+  left: 0px;
+  font-size: 70px;
+  line-height: 0px;
+  padding: 0;
+}
+
+section h1 {
+  margin-left: 40px;
+}
+
+.bold-underline {
+  display: block;
+  border-bottom: 4px solid #023047;
+}
+
+.game-settings ul {
+  padding: 0px;
+}
+
+.game-settings .row-aside {
+  width: 10%;
+}
+
+.row > div {
+  display: flex;
+  flex-direction: row;
+}
+
+.row .thin-underline {
+  width: 85%;
+  margin: 15px 0 10px 95px;
+  border-bottom: 2px solid #023047;
+}
+
+.row .row-article {
+  width: 50%;
+  margin-left: 48px;
+}
+
+.row-aside > .aside-icon {
+  display: block;
+  width: 20px;
+  margin-top: 15px;
+  font-size: 50px;
+}
+
+.row .controls {
+  margin: 10px 0 0 95px;
+  width: 100%;
+}
+
+.next-button {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+
+  height: 50px;
+  width: auto;
+  padding: 0px 30px 0px 30px;
+
+  font-size: 32px;
+}
+
+.goback-button {
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+
+  height: 50px;
+  width: auto;
+  padding: 0px 30px 0px 30px;
+
+  font-size: 32px;
+}
+
+@media only screen and (max-width: 560px) {
+  .game-menu {
+    height: 650px;
+    width: 365px;
+    padding: 0;
+    padding-bottom: 20px;
+  }
+
+  .menu-header-background {
+    height: 250px;
+    width: 630px;
+    left: -150px;
+    top: -125px;
+  }
+
+  .game-menu .game-menu-buttons {
+    width: 100%;
+  }
+
+  .game-menu .game-menu-buttons .menu-button {
+    width: 340px;
+    height: 70px;
+    margin-bottom: 10px;
+    font-size: 40px;
+  }
+
+  .game-menu .menu-header .game-name {
+    font-size: 75px;
+  }
+  .menu-header .go-back-button {
+    top: 60px;
+    left: 20px;
+    font-size: 50px;
+    line-height: 0px;
+    padding: 0;
+  }
+
+  .bold-underline {
+    align-self: center;
+    width: 95%;
+    border-bottom: 2px solid #023047;
+  }
+
+  .row {
+    padding: 0px 10px 0px 10px;
+  }
+
+  .goback-button {
+    bottom: 25px;
+    left: 25px;
+
+    height: 40px;
+    padding: 0px 25px 0px 25px;
+
+    font-size: 24px;
+  }
+
+  .next-button {
+    bottom: 25px;
+    right: 25px;
+
+    height: 40px;
+    padding: 0px 25px 0px 25px;
+
+    font-size: 24px;
+  }
+}
