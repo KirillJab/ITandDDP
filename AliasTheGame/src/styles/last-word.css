@@ -1,0 +1,31 @@
+.last-word-section {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.last-word-section aside {
+  width: 15%;
+}
+.last-word-section article {
+  width: 85%;
+}
+.last-word-section .checkbox {
+  width: 10%;
+}
+
+@media only screen and (max-width: 560px) {
+  .last-word-section {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .last-word-section article {
+    width: 60%;
+  }
+  .last-word-section h3 {
+    font-size: 25px;
+  }
+}
