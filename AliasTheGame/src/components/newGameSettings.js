@@ -8,25 +8,25 @@ ${Header()}
 <section class="game-vocabulary">
     <div>
         <span class="vocabularies-description">Cловарь:</span>
-        <button class="vocabularies-button" id="choose-vocabulary-prev">
+        <button class="button vocabularies-button" id="choose-vocabulary-prev">
             <span class="material-icon">arrow_back</span></button>
         <span id="choosen-dictionary">${dictionaryName}</span>
-        <button class="vocabularies-button" id="choose-vocabulary-next">
+        <button class="button vocabularies-button" id="choose-vocabulary-next">
             <span class="material-icon">arrow_forward</span></button>
     </div>
     <div class="underline"></div>
 </section>
 <section class="game-settings">
-    <h2>Настройки</h2>
+    <h1>Настройки</h1>
     <div class="bold-underline"></div>
     <ul>
         <li class="row">
             <div>
-                <aside>
-                    <span class="material-icon">av_timer</span>
+                <aside class="row-aside">
+                    <span class="aside-icon material-icon">av_timer</span>
                 </aside>
-                <article>
-                    <h3>Длина раунда</h3>
+                <article class="row-article">
+                    <h2>Длина раунда</h2>
                     <p>за которое надо отгадать слова</p>
                 </article>
                 <div class="timer-display">
@@ -47,11 +47,11 @@ ${Header()}
         </li>
         <li class="row">
             <div>
-                <aside>
-                    <span class="material-icon">aod</span>
+                <aside class="row-aside">
+                    <span class="aside-icon material-icon">aod</span>
                 </aside>
-                <article>
-                    <h3>Количество слов</h3>
+                <article class="row-article">
+                    <h2>Количество слов</h2>
                     <p>необходимое для победы</p>
                 </article>
                 <div class="words-display">
@@ -64,5 +64,5 @@ ${Header()}
             </div>
         </li>
     </ul>
-    <button class="next-button" id="next-btn">Далее</button>
+    <a class="button next-button" id="next-btn">Далее</a>
 </section>`;

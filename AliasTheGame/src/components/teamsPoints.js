@@ -13,7 +13,7 @@ ${Header()}
         ? "<span> Овертайм </span>"
         : ""
     }
-        <h2> Команды: </h2>
+        <h1> Команды: </h1>
         <div class="bold-underline"></div>
         <ul>
         ${teams
@@ -22,7 +22,7 @@ ${Header()}
         <li class="row">
             <div>
                 <div class="team-icon" style="background:${team.color}"}></div>
-                <h3 class="team-name">${team.name}</h3>
+                <h2 class="team-name">${team.name}</h2>
                 <span>${team.points}</span>
             </div>
             ${
@@ -37,8 +37,8 @@ ${Header()}
     </div>
     ${
       isFinish
-        ? `<button class="next-button" id="end-game">Закончить игру</button>`
-        : `<button class="next-button" id="next-btn">Следующий раунд</button>`
+        ? `<a class="button next-button" id="end-game">Закончить игру</a>`
+        : `<a class="button next-button" id="next-btn">Следующий раунд</a>`
     }
     
 </section>
@@ -48,7 +48,7 @@ ${
     <div id="modal-container"
     class="show">
       <div id="modal">
-        <h2>${teams[currentTeamId].name} победили!</h2>
+        <h1>${teams[currentTeamId].name} победили!</h1>
         <div class="underline"></div>
         <table>
         ${[...teams]
@@ -63,9 +63,9 @@ ${
           )
           .join("")}
           </table>
-          <button id="close-modal">
+          <a id="button close-modal">
             <span>Закрыть</span>
-          </button>
+          </a>
       </div>
     </div>
   `

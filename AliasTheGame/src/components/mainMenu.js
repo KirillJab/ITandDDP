@@ -14,14 +14,14 @@ export const MainMenu = ({ isSignedIn, hasSavedGame, name }) => {
         ${
           hasSavedGame
             ? `
-            <button class="menu-button" id="continue-game-btn">
+            <a class="button menu-button" id="continue-game-btn">
               ПРОДОЛЖИТЬ ИГРУ
-            </button>`
+            </a>`
             : ""
         }
-        <button class="menu-button" id="new-game-btn">НОВАЯ ИГРА</button>
-        <a href="https://letmegooglethat.com/?q=alias+game+rules&l=1" target="_blank"><button class="menu-button">ПРАВИЛА</button></a>
-        <button class="menu-button" id="sign-out-btn">ВЫЙТИ</button>
+        <button class="button menu-button" id="new-game-btn">НОВАЯ ИГРА</button>
+        <a class="button menu-button" href="https://letmegooglethat.com/?q=alias+game+rules&l=1" target="_blank">ПРАВИЛА</a>
+        <a class="button menu-button" id="sign-out-btn">ВЫЙТИ</a>
       </section>
       ${!isSignedIn ? Login("") : ""}`;
 };

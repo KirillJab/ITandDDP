@@ -9,7 +9,7 @@ ${Header()}
 <section class="team-turn-section">
 <div class="points-screen">
     <div class="points-screen-heading">
-        <h2>Набранные очки:</h2>
+        <h1>Набранные очки:</h1>
         <span id="points-from-turn">${getPoints(
           swipedWords,
           isLastWordForAll,
@@ -25,7 +25,7 @@ ${Header()}
             <div>
             ${
               index === array.length - 1 && isLastWordForAll
-                ? `<button class="group-button" id="choose-team-name"><span class="material-icon">group</span></button>`
+                ? `<button class="button group-button" id="choose-team-name"><span class="material-icon">group</span></button>`
                 : `
                 <label class="checkbox">
                     <input type="checkbox" id="${word.word}" 
@@ -33,7 +33,7 @@ ${Header()}
                     <span class="checkmark"></span>
                 </label>`
             }
-                <h3>${word.word}</h3>
+                <h2>${word.word}</h2>
             </div>
             ${
               index < array.length - 1
@@ -51,26 +51,26 @@ ${Header()}
     </div>
     <div class="underline"></div>
 </div>
-<button class="next-button" id="next-btn">Завершить</button>
+<a class="button next-button" id="next-btn">Завершить</a>
 </section>
 ${
   isLastWordForAll
     ? `
     <div id="modal-container">
       <div id="modal">
-        <h2>Какая команда отгадала последнее слово?</h2>
+        <h1>Какая команда отгадала последнее слово?</h1>
         <div class="underline"></div>
         ${teams
           .map(
             (team, index) => `
-          <button id=${"choose-" + index}>
+          <a class="button" id=${"choose-" + index}>
             <span>${team.name}</span>
-          </button>`
+          </a>`
           )
           .join("")}
-          <button id="choose-noone">
+          <a class="button" id="choose-noone">
             <span>Никто</span>
-          </button>
+          </a>
       </div>
     </div>
   `
