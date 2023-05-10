@@ -1,0 +1,116 @@
+.teams-points-section {
+  margin-top: 40px;
+  width: 100%;
+}
+
+.teams-points-section .team-turn div span {
+  font-size: 36px;
+}
+
+.teams-points-section #team-name-turn {
+  margin-left: 30px;
+}
+
+.teams-points-section .team-turn .underline {
+  width: 100%;
+  border-bottom: 1px solid #023047;
+}
+
+.teams-points-section .points-screen {
+  margin-top: 15px;
+}
+
+.teams-points-section .points-screen .points-screen-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.teams-points-section .points-screen > span {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-size: 40px;
+  font-weight: 500;
+}
+
+#points-from-turn {
+  margin-right: 30px;
+  font-size: 36px;
+}
+
+.teams-points-section li > div {
+  position: relative;
+  width: 100%;
+  justify-content: start;
+  align-items: center;
+}
+.teams-points-section .row span {
+  position: absolute;
+  right: 0px;
+  display: inline-block;
+  font-size: 32px;
+}
+
+.teams-points-section ul {
+  height: 350px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.teams-points-section .team-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-top: 5px;
+  background-color: aqua;
+  border: 1px solid #ffffff;
+}
+
+.teams-points-section .team-name {
+  margin-left: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#modal table {
+  width: 100%;
+  margin-top: 20px;
+  padding: 10px 0px 10px 0px;
+
+  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+  background: #ffffff;
+  border-radius: 10px;
+}
+#modal td {
+  font-size: 28px;
+  text-align: left;
+  color: var(--dark-blue);
+}
+
+@media only screen and (max-width: 560px) {
+  .teams-points-section ul {
+    width: 100%;
+    height: 200px;
+    padding: 0px 20px;
+  }
+
+  .teams-points-section .team-icon {
+    width: 30px;
+    min-width: 30px;
+    height: 30px;
+    margin-top: 7px;
+  }
+
+  .teams-points-section .bold-underline {
+    margin-left: 10px;
+  }
+  .teams-points-section .thin-underline {
+    width: 80%;
+    margin-left: 58px;
+  }
+  .teams-points-section .row h2 {
+    font-size: 25px;
+    margin-top: 5px;
+  }
+}
